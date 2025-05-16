@@ -1,8 +1,4 @@
->>> import importlib.util
->>> spec = importlib.util.spec_from_file_location("add_integer", "./0-add_integer.py")
->>> module = importlib.util.module_from_spec(spec)
->>> spec.loader.exec_module(module)
->>> add_integer = module.add_integer
+>>> from 0-add_integer import add_integer
 >>> add_integer(1, 2)
 3
 >>> add_integer(100, -2)
