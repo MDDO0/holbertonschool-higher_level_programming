@@ -11,9 +11,11 @@ class Square:
 
     def my_print(self):
         
-        if size == 0 :
-            print(" ")
-        elif size 
+        if self.__size == 0 :
+            print()
+        elif self.__size > 0:
+            for i in range(self.__size):
+                print("#" * self.__size)
 
     @property
     def size(self):
