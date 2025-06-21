@@ -1,57 +1,28 @@
 #!/usr/bin/env python3
-"""Defines Shape abstract class, and Circle/Rectangle concrete implementations."""
-from abc import ABC, abstractmethod
-import math
+"""Defines a VerboseList class that extends the built-in list with notifications."""
 
 
-class Shape(ABC):
-    """Abstract base class representing a geometric shape."""
+class VerboseList(list):
+    """Custom list that prints messages when modified."""
 
-    @abstractmethod
-    def area(self):
-        """Calculate and return the area of the shape."""
-        pass
+    def append(self, item):
+        """Append item and print notification."""
+        super().append(item)
+        print(f"Added [{item}] to the list.")
 
-    @abstractmethod
-    def perimeter(self):
-        """Calculate and return the perimeter of the shape."""
-        pass
+    def extend(self, iterable):
+        """Extend list and print notification."""
+        count = len(iterable)
+        super().extend(iterable)
+        print(f"Extended the list with [{count}] items.")
 
+    def remove(self, item):
+        """Print notification before removing item."""
+        print(f"Removed [{item}] from the list.")
+        super().remove(item)
 
-class Circle(Shape):
-    """Circle shape with a given radius."""
-
-    def __init__(self, radius):
-        """Initialize Circle with radius."""
-        self.radius = radius
-
-    def area(self):
-        """Return the area of the circle."""
-        return math.pi * self.radius ** 2
-
-    def perimeter(self):
-        """Return the perimeter of the circle."""
-        return 2 * math.pi * self.radius
-
-
-class Rectangle(Shape):
-    """Rectangle shape with given width and height."""
-
-    def __init__(self, width, height):
-        """Initialize Rectangle with width and height."""
-        self.width = width
-        self.height = height
-
-    def area(self):
-        """Return the area of the rectangle."""
-        return self.width * self.height
-
-    def perimeter(self):
-        """Return the perimeter of the rectangle."""
-        return 2 * (self.width + self.height)
-
-
-def shape_info(shape):
-    """Prints the area and perimeter of any shape (duck typing)."""
-    print("Area:", shape.area())
-    print("Perimeter:", shape.perimeter())
+    def pop(self, index=-1):
+        """Print notification before popping item."""
+        item = self[index]
+        print(f"Popped [{item}] from the list.")
+        return super().pop(index)
