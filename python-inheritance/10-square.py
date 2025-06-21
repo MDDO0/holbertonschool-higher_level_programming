@@ -1,17 +1,8 @@
-#!/usr/bin/python3
-"""Defines a Square class that inherits from Rectangle."""
-Rectangle = __import__('9-rectangle').Rectangle
+import importlib.util
+import sys
 
-
-class Square(Rectangle):
-    """Square that inherits from Rectangle with size validation."""
-
-    def __init__(self, size):
-        """Initialize a square.
-
-        Args:
-            size (int): The size of the square's sides.
-        """
-        self.integer_validator("size", size)
-        self.__size = size
-        super().__init__(size, size)
+module_name = "9-rectangle"
+spec = importlib.util.spec_from_file_location("Rectangle", "9-rectangle.py")
+rectangle_module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(rectangle_module)
+Rectangle = rectangle_module.Rectangle
